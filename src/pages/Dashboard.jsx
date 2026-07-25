@@ -2,10 +2,9 @@ import { Layout } from "../components/Layout";
 export function Dashboard (){
     return(
         <Layout>
-            <div id="tab-dashboard" class="tab-content space-y-6">
+            
       
-      
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         <div className="bg-white border border-slate-200/60 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-emerald-300 transition-all duration-300 group">
           <div className="flex items-center justify-between mb-3">
@@ -169,10 +168,7 @@ export function Dashboard (){
             </div>
           </div>
         </div>
-
       </section>
-
-    </div>
-        </Layout>
+    </Layout>
     )
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { supabase } from "../SupabaseClients"
+import { useNavigate } from "react-router-dom";
 
 export function Login (){
     const [email, setEmail] = useState('');
@@ -7,6 +8,17 @@ export function Login (){
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
     const [isSignUp, setIsSignUp] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(()=> {
+      const checkUser = async () => {
+        const { data: { session}} = await supabase.auth.getSession();
+        if (session) {
+          navigate('/');
+        }
+      };
+      checkUser();      
+  },  [navigate]);
 
     const handleAuth = async (e) => {
         e.preventDefault();
@@ -30,6 +42,7 @@ export function Login (){
                 });
             if (error) throw error;
             setMessage('Logged in Successfully!');
+            navigate('/');
             }
         }   catch (error) {
             setMessage(error.error_description || error.message);
