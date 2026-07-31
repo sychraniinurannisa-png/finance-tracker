@@ -51,9 +51,13 @@ export function Login (){
         }
         };
     
-    useEffect (()=>{
-        document.body.classList.add('bg-slate-50', 'text-slate-800', 'min-h-screen', 'flex', 'items-center', 'justify-center', 'py-12', 'px-4', 'sm:px-6', 'lg:px-8')
-    })
+    useEffect(() => {
+        const classes = ['bg-slate-50', 'text-slate-800', 'min-h-screen', 'flex', 'items-center', 'justify-center', 'py-12', 'px-4', 'sm:px-6', 'lg:px-8'];
+        document.body.classList.add(...classes);
+        return () => {
+            document.body.classList.remove(...classes);
+        };
+    }, []);
     return(
                    
         <div class="max-w-md w-full space-y-8 bg-white border border-slate-200/80 rounded-3xl p-8 shadow-xl">
