@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
-import { supabase } from "../SupabaseClients";
+import { supabase } from "../supabaseClients";
 
 export function Layout({ 
   children, 

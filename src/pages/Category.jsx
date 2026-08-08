@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Layout } from "../components/Layout";
-import { supabase } from "../SupabaseClients";
+import { supabase } from "../supabaseClients";
 
 export function Category() {
   const [categories, setCategories] = useState([]);
