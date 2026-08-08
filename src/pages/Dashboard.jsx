@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Layout } from "../components/Layout";
-import { supabase } from "../supabaseClient";
+import { supabase } from "../supabaseClients";
 
 export function Dashboard() {
   const [transactions, setTransactions] = useState([]);
