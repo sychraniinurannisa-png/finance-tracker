@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { supabase } from "../SupabaseClients";
 
 export function Layout({ 
@@ -12,6 +11,14 @@ export function Layout({
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState('');
 
+  // Format tanggal hari ini secara otomatis (Contoh: "Sabtu, 18 Juli 2026")
+  const currentDateFormatted = new Date().toLocaleDateString("id-ID", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  });
+
   useEffect(() => {
     document.body.classList.add(
       'bg-slate-50', 
@@ -21,15 +28,17 @@ export function Layout({
       'flex-col', 
       'md:flex-row'
     );
+    
     const checkUser = async () => {
-    const { data: { session}} = await supabase.auth.getSession();
-    if (!session) {
-      navigate('/Login')
-    } else {
-      setUserEmail(session.user.email);
-    }
-  };
-      checkUser();
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        navigate('/Login');
+      } else {
+        setUserEmail(session.user.email);
+      }
+    };
+
+    checkUser();
   }, [navigate]);
 
   const handleLogOut = async () => {
@@ -148,8 +157,8 @@ export function Layout({
             <h2 className="text-xl font-extrabold text-slate-900">{title}</h2>
             <p className="text-xs text-slate-400">{description}</p>
           </div>
-          <span className="text-xs font-semibold px-3 py-1.5 bg-slate-100 border border-slate-200/50 rounded-full text-slate-600 align-self-start sm:align-self-auto">
-            Sabtu, 18 Juli 2026
+          <span className="text-xs font-semibold px-3 py-1.5 bg-slate-100 border border-slate-200/50 rounded-full text-slate-600 self-start sm:self-auto capitalize">
+            {currentDateFormatted}
           </span>
         </header>
 
